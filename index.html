@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DirectoryBase</title>
+    <title>DirectoryBase - The Base for Agentic Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #0a0a12;
+            --card-bg: #12121e;
+            --card-border: #1e1e30;
+            --purple: #8b5cf6;
+            --purple-light: #a78bfa;
+            --green: #22c55e;
+            --green-dim: rgba(34, 197, 94, 0.15);
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,50 +28,218 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background-color: #0f172a;
-            color: #e2e8f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo span {
+            color: var(--purple);
+        }
+
+        header a.site-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        header a.site-link:hover {
+            color: var(--text-secondary);
+        }
+
+        main {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 4rem 2rem;
         }
 
-        .container {
-            text-align: center;
-            max-width: 640px;
-            padding: 2rem;
+        .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 1.5rem;
         }
 
         h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            letter-spacing: -0.02em;
         }
 
-        p {
-            font-size: 1.25rem;
-            color: #94a3b8;
+        h1 span {
+            color: var(--purple);
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 540px;
             line-height: 1.6;
+            margin-bottom: 3.5rem;
         }
 
         .updated {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-bottom: 2rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            max-width: 780px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 2rem 1.75rem;
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            border-color: #2a2a42;
+            transform: translateY(-2px);
+        }
+
+        .card.centered {
+            grid-column: 1 / -1;
+            max-width: 380px;
+            justify-self: center;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--green);
+            border: 1px solid var(--green);
+            border-radius: 9999px;
+            padding: 0.2rem 0.75rem;
+            margin-bottom: 0.75rem;
+            background: var(--green-dim);
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--purple-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title a {
+            color: var(--purple-light);
+            text-decoration: none;
+        }
+
+        .card-title a:hover {
+            text-decoration: underline;
+        }
+
+        .card-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card.centered {
+                max-width: 100%;
+            }
+
+            main {
+                padding: 3rem 1rem;
+            }
+
+            header {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <p class="updated">Last updated: April 16, 2026 12:00 AM UTC</p>
-        <h1>DirectoryBase</h1>
-        <p>Your directory is coming soon.</p>
-    </div>
+    <header>
+        <a class="logo" href="/">Directory<span>Base</span></a>
+        <a class="site-link" href="https://directorybase.org">directorybase.org</a>
+    </header>
+
+    <main>
+        <p class="updated">Last updated: October 19, 2026</p>
+        <p class="label">A Family of Agentic Properties</p>
+        <h1>The Base for <span>Agentic</span> Tools</h1>
+        <p class="subtitle">DirectoryBase is the parent brand behind curated tools, directories, and resources built for the agentic AI era.</p>
+
+        <div class="cards">
+            <div class="card">
+                <div class="badge">Live</div>
+                <div class="card-title"><a href="https://agenticwatch.dev">AgenticWatch.dev</a></div>
+                <p class="card-desc">Track and discover agentic AI systems, frameworks, and agents in the wild.</p>
+            </div>
+            <div class="card">
+                <div class="badge">Live</div>
+                <div class="card-title"><a href="https://toolidx.dev">ToolIDX.dev</a></div>
+                <p class="card-desc">The index of tools, APIs, and integrations powering modern AI agents.</p>
+            </div>
+            <div class="card centered">
+                <div class="badge">Live</div>
+                <div class="card-title"><a href="https://datatool.dev">Datatool.dev</a></div>
+                <p class="card-desc">Fix, validate, and verify AI-generated structured data. Built for developers working with malformed LLM output.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Gregory D. Collins &mdash; hello@directorybase.org
+    </footer>
 </body>
 </html>
